@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notification;
 /**
  * 小程序消息发送通道
  *
- * @property EaseBaidu\Service\SmartProgram\Application $app
+ * @property \EaseBaidu\Service\SmartProgram\Application $app
  */
 class SmartProgramChannel
 {

@@ -17,12 +17,17 @@ class SmartProgramTemplateMessage
      * @author zacksleo <zacksleo@gmail.com>
      *
      * @param string $openid
+     * @param bool $guest
      *
      * @return SmartProgramTemplateMessage
      */
-    public function to($openid)
+    public function to($openid, $guest = false)
     {
-        $this->payload['touser_openId'] = $openid;
+        if (! $guest) {
+            $this->payload['touser_openId'] = $openid;
+        } else {
+            $this->payload['touser'] = $openid;
+        }
 
         return $this;
     }
@@ -132,11 +137,6 @@ class SmartProgramTemplateMessage
      */
     public function getPayload()
     {
-        if (substr($this->payload['sceneId'], -1) === 0) {
-            $this->payload['touser'] = $this->payload['touser_openId'];
-            unset($this->payload['touser_openId']);
-        }
-
         return $this->payload;
     }
 }
